@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 
 const Form = ({ setLibro }) => {
-  const [titulo, setTitulo] = useState("");
-  const [autor, setAutor] = useState("");
+  const [info, setInfo] = useState({
+    titulo: "",
+    autor: "",
+  });
   const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (titulo.length >= 3 && autor.length >= 6 && !titulo.startsWith(" ")) {
-      setLibro({ titulo, autor });
+    if (
+      info.titulo.length >= 3 &&
+      info.autor.length >= 6 &&
+      !info.titulo.startsWith(" ")
+    ) {
+      setLibro(info);
       setError(false);
     } else {
       setError(true);
@@ -19,14 +25,14 @@ const Form = ({ setLibro }) => {
       <label>Titulo del Libro: </label>
       <input
         type="text"
-        value={titulo}
-        onChange={(e) => setTitulo(e.target.value)}
+        value={info.titulo}
+        onChange={(e) => setInfo({ ...info, titulo: e.target.value })}
       />
       <label>Autor del libro: </label>
       <input
         type="text"
-        value={autor}
-        onChange={(e) => setAutor(e.target.value)}
+        value={info.autor}
+        onChange={(e) => setInfo({ ...info, autor: e.target.value })}
       />
       <button type="submit">Enviar</button>
       {error && (

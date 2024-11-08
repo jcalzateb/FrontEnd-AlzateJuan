@@ -4,19 +4,12 @@ import Form from "./Components/Form";
 import React, { useState } from "react";
 
 function App() {
-  const [libro, setLibro] = useState({
-    titulo: "",
-    autor: ",",
-  });
+  const [libro, setLibro] = useState(null);
   return (
     <>
       <div className="App">
         <h1>Formulario de libros</h1>
-        {libro.titulo && libro.autor ? (
-          <Card titulo={libro.titulo} autor={libro.autor} />
-        ) : (
-          <Form setLibro={setLibro} />
-        )}
+        {libro ? <Card info={libro} /> : <Form setLibro={setLibro} />}
       </div>
     </>
   );
