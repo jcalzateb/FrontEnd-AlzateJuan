@@ -5,11 +5,21 @@ import React, { useState } from "react";
 
 function App() {
   const [libro, setLibro] = useState(null);
+  const handleBack = () => {
+    setLibro(null);
+  };
   return (
     <>
       <div className="App">
         <h1>Formulario de libros</h1>
-        {libro ? <Card info={libro} /> : <Form setLibro={setLibro} />}
+        {libro ? (
+          <div>
+            <Card info={libro} />
+            <button onClick={handleBack}>Volver atras</button>
+          </div>
+        ) : (
+          <Form setLibro={setLibro} />
+        )}
       </div>
     </>
   );
